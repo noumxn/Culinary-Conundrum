@@ -3,7 +3,10 @@
   "name": "Kitchen",
   "desc": "You are in your kitchen.",
   "direction": { "north": 1 },
-  "items": []
+  "items": [],
+  "goal": "Today we are going to bake a delicious Vanilla Cake.\n",
+  "recipe": "You need the following ingredients.\nEggs, Milk, Butter, Salt, Sugar, Flour, Baking Powder, Vanilla essence\n",
+  "flag": "true"
 },
 {
   "name": "Hall",
@@ -23,7 +26,9 @@
   "direction": { "east": 2 },
   "items": [],
   "flag": "true",
-  "desc2": "John is a friendly neighbor.\nHe waves at you."
+  "desc2": "John is a friendly neighbor.\nHe waves at you.",
+  "help_message": "Awesome job! You've helped John get his hen back in the coop.\nJohn gives you some eggs as a token on his appriciation.\n",
+  "gift": "eggs"
 },
 {
   "name": "Street",
@@ -51,20 +56,39 @@
 },
 {
   "name": "Aisle 1",
-  "desc": "You are in Aisle 1",
+  "desc": "You are in Aisle 1. This is the 'Essential Seasonings' aisle.",
   "direction": { "southwest": 7, "south": 9 },
   "items": ["sugar", "salt"]
 },
 {
   "name": "Aisle 2",
-  "desc": "You are in Aisle 2",
+  "desc": "You are in Aisle 2. This it the 'Baking Basics' aisle.",
   "direction": { "west": 7, "south": 10, "north": 8 },
   "items": ["flour", "baking powder"]
 },
 {
   "name": "Aisle 3",
-  "desc": "You are in Aisle 3",
+  "desc": "You are in Aisle 3. This is the 'Spices and Condiments' aisle.",
   "direction": { "northwest": 7, "north": 9 },
   "items": ["vanilla essence"]
+},
+{
+  "milk": 4,
+  "salt": 1,
+  "sugar": 2,
+  "vanilla essence": 4,
+  "baking powder": 2,
+  "flour": 2,
+  "butter": 3
+},
+{
+  "eggs": null,
+  "milk": null,
+  "salt": null,
+  "sugar": null,
+  "vanilla essence": null,
+  "baking powder": null,
+  "flour": null,
+  "butter": null
 }
 ]
