@@ -74,7 +74,7 @@ while True:
                 print("You're not carrying anything.\n")
             else:
                 print("Inventory:")
-                for item in inventory:
+                for item in list(set(inventory)):
                     print(" ", item)
                 print()
 
@@ -92,15 +92,16 @@ while True:
 
         elif command.startswith("get "):
             item_name = command[4:]
-            if item_name in game_map[11] and "purse" not in inventory:
+            if item_name in game_map[12] and "purse" not in inventory:
                 print("Uh oh! You can't pick this item without paying for it.\n")
                 continue
 
             if "items" in current_location and item_name in current_location["items"]:
                 inventory.append(item_name)
                 current_location["items"].remove(item_name)
-                if item_name in game_map[11]:
-                    money = money - game_map[11][item_name]
+                if item_name in game_map[12]:
+                    money = money - game_map[12][item_name]
+                    game_map[12][item_name] = 0
                 print("You pick up the", item_name + ".\n")
             else:
                 print("There's no", item_name, "here.\n")
@@ -115,6 +116,9 @@ while True:
                 print("There's no", item_name, "in your inventory.\n")
 
         elif command == "assist":
+            if current_location != game_map[3]:
+                print("Nobody needs your help here.\n")
+                continue
             print(current_location["help_message"])
             inventory.append(current_location["gift"])
             current_location["flag"] = "false"
@@ -129,13 +133,16 @@ while True:
                 print("Goodbye!")
                 sys.exit()
             if command == "assist":
+                if current_location != game_map[3]:
+                    print("Nobody needs your help here.\n")
+                    continue
                 print(current_location["help_message"])
                 inventory.append(current_location["gift"])
                 current_location["flag"] = "false"
 
         elif command == "prepare":
             if current_location == game_map[0]:
-                for i in game_map[12]:
+                for i in game_map[13]:
                     if i not in current_location["items"]:
                         print(i + " is missing from the recipe.")
                         acquired_ingredients = False

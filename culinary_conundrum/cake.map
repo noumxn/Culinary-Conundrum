@@ -10,9 +10,9 @@
 },
 {
   "name": "Hall",
-  "desc": "You have now entered the hall.",
-  "direction": { "north": 2, "south": 0 },
-  "items": ["purse"]
+  "desc": "You have now entered the hall. The main door of the house is to the north",
+  "direction": { "north": 2, "west": 11, "south": 0 },
+  "items": []
 },
 {
   "name": "Street",
@@ -73,6 +73,12 @@
   "items": ["vanilla essence"]
 },
 {
+  "name": "Bedroom",
+  "desc": "This is your bedroom. It is very cozy.",
+  "direction": { "east": 1 },
+  "items": ["purse"]
+},
+{
   "milk": 4,
   "salt": 1,
   "sugar": 2,
@@ -82,13 +88,13 @@
   "butter": 3
 },
 {
-  "eggs": null,
-  "milk": null,
-  "salt": null,
-  "sugar": null,
-  "vanilla essence": null,
-  "baking powder": null,
-  "flour": null,
-  "butter": null
+  "eggs": 0,
+  "milk": 0,
+  "salt": 0,
+  "sugar": 0,
+  "vanilla essence": 0,
+  "baking powder": 0,
+  "flour": 0,
+  "butter": 0
 }
 ]
