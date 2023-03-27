@@ -22,6 +22,7 @@
   "desc": "John is a friendly neighbor who loves his pet hens.\nHe often spends his afternoons in his yard, caring for his feathered friends.\nHe seems to running around his backyard chasing an escaped hen.",
   "direction": { "east": 2 },
   "items": [],
+  "flag": "true",
   "desc2": "John is a friendly neighbor.\nHe waves at you."
 },
 {
