@@ -11,7 +11,7 @@ print("| |    | | | | | |  _ \ / _  |/ ___) | | |  | |     / _ \|  _ \| | | |  _
 print("| \____| |_| | | | | | ( ( | | |   | |_| |  | \____| |_| | | | | |_| | | | ( (_| | |   | |_| | | | |")
 print(" \______)____|_|_|_| |_|\_||_|_|    \__  |   \______)___/|_| |_|\____|_| |_|\____|_|    \____|_|_|_|")
 print("                                   (____/                                                           ")
-print("\n\033[1mWelcome to the game!\033[0m\n")
+print("\n\033[1mWELCOME TO THE GAME!\033[0m\n")
 
 
 # Setting the starting location
@@ -27,22 +27,22 @@ money = 20
 command_list = ["go", "get", "look", "inventory",
                 "quit", "help", "drop", "assist", "prepare"]
 
-prices = {
-    "milk": 4,
-    "salt": 1,
-    "sugar": 2,
-    "vanilla essence": 4,
-    "baking powder": 2,
-    "flour": 2,
-    "butter": 3
-}
 
 while True:
     print("> \033[1m" + current_location["name"] + "\033[0m\n")
-    if current_location["name"] == "John's Front Yard" and current_location["flag"] == "false":
+
+    if current_location == game_map[3] and current_location["flag"] == "false":
         print("\033[3m" + current_location["desc2"] + "\033[0m\n")
     else:
         print("\033[3m" + current_location["desc"] + "\033[0m\n")
+
+    if current_location == game_map[0] and current_location["flag"] == "true":
+        print('\033[3m{}\033[0m'.format(current_location["goal"]))
+        current_location["flag"] = "false"
+
+    if current_location == game_map[0]:
+        print('\033[3m{}\033[0m'.format(current_location["recipe"]))
+
     if "items" in current_location:
         print("Items:", ", ".join(current_location["items"]) + "\n")
 
@@ -85,15 +85,15 @@ while True:
 
     elif command.startswith("get "):
         item_name = command[4:]
-        if item_name in prices and "purse" not in inventory:
+        if item_name in game_map[11] and "purse" not in inventory:
             print("Uh oh! You can't pick this item without paying for it.\n")
             continue
 
         if "items" in current_location and item_name in current_location["items"]:
             inventory.append(item_name)
             current_location["items"].remove(item_name)
-            if item_name in prices:
-                money = money - prices[item_name]
+            if item_name in game_map[11]:
+                money = money - game_map[11][item_name]
             print("You pick up the", item_name + ".\n")
         else:
             print("There's no", item_name, "here.\n")
@@ -108,9 +108,8 @@ while True:
             print("There's no", item_name, "in your inventory.\n")
 
     elif command == "assist":
-        print("Awesome job! You've helped John get his hen back in the coop.")
-        print("John gives you some eggs as a token on his appriciation.\n")
-        inventory.append("eggs")
+        print(current_location["help_message"])
+        inventory.append(current_location["gift"])
         current_location["flag"] = "false"
 
     elif command == "help":
@@ -130,9 +129,11 @@ while True:
 
     elif command == "prepare":
         if current_location == game_map[0]:
-            if ["eggs", "milk", "butter", "flour", "baking powder", "salt", "sugar", "vanilla essence"] not in current_location["items"]:
-                print("Left")
-            else:
-                print("Done")
+            for i in game_map[12]:
+                if i not in current_location["items"]:
+                    print(i + " is missing from the recipe.")
+                else:
+                    print("Done")
+            print()
         else:
             print("You need to be in the Kitchen to prepare your ingredients.\n")
