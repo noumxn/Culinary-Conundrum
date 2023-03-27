@@ -1,0 +1,69 @@
+[
+{
+  "name": "Kitchen",
+  "desc": "You are in your kitchen.",
+  "direction": { "north": 1 },
+  "items": []
+},
+{
+  "name": "Hall",
+  "desc": "You have now entered the hall.",
+  "direction": { "north": 2, "south": 0 },
+  "items": ["purse"]
+},
+{
+  "name": "Street",
+  "desc": "You are now in the street in front of your home.\nYou can see your neighbor John in his front yard.",
+  "direction": { "west": 3, "east": 4, "south": 1 },
+  "items": []
+},
+{
+  "name": "John's Front Yard",
+  "desc": "John is a friendly neighbor who loves his pet hens.\nHe often spends his afternoons in his yard, caring for his feathered friends.\nHe seems to running around his backyard chasing an escaped hen.",
+  "direction": { "east": 2 },
+  "items": [],
+  "desc2": "John is a friendly neighbor.\nHe waves at you."
+},
+{
+  "name": "Street",
+  "desc": "You are on the street. There is a Dairy Store up north.",
+  "direction": { "north": 5, "west": 2, "east": 6 },
+  "items": []
+},
+{
+  "name": "Bob's Dairy Store",
+  "desc": "Welcome to Bob's Dairy store, where you can find the freshest and most delicious dairy products in town!",
+  "direction": { "south": 4 },
+  "items": ["milk", "butter"]
+},
+{
+  "name": "Street",
+  "desc": "You are on the street again.",
+  "direction": { "west": 4, "east": 7 },
+  "items": []
+},
+{
+  "name": "Local Convenience Store",
+  "desc": "You are at the local convenience store.\nThis is a popular spot to get groceries.",
+  "direction": { "west": 6, "east": 9, "northeast": 8, "southeast": 10 },
+  "items": []
+},
+{
+  "name": "Aisle 1",
+  "desc": "You are in Aisle 1",
+  "direction": { "southwest": 7, "south": 9 },
+  "items": ["sugar", "salt"]
+},
+{
+  "name": "Aisle 2",
+  "desc": "You are in Aisle 2",
+  "direction": { "west": 7, "south": 10, "north": 8 },
+  "items": ["flour", "baking powder"]
+},
+{
+  "name": "Aisle 3",
+  "desc": "You are in Aisle 3",
+  "direction": { "northwest": 7, "north": 9 },
+  "items": ["vanilla essence"]
+}
+]
