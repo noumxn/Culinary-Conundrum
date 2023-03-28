@@ -36,6 +36,7 @@ while True:
     try:
         acquired_ingredients = True
 
+        # Prints name and descreption of the location player is at
         print("> \033[1m" + current_location["name"] + "\033[0m\n")
 
         if current_location == game_map[3] and current_location["flag"] == "false":
@@ -50,25 +51,31 @@ while True:
         if current_location == game_map[0]:
             print('\033[3m{}\033[0m'.format(current_location["recipe"]))
 
+        # Items available at the location
         if "items" in current_location:
             print("Items:", ", ".join(current_location["items"]) + "\n")
 
         print("Directions:", " ".join(current_location["direction"].keys()))
         print()
 
+        # Displays the amount of money player has for buying ingredients,
+        # only if they have the purse in their inventory
         if "purse" in inventory:
             print("Money: $" + str(money) + "\n")
 
         command = input("What would you like to do? ").strip().lower()
 
+        # command validation
         if command == '' or command.split()[0] not in command_list:
             print("Sorry, I don't understand that.")
             print("Type 'Help' to see valid command list.\n")
 
+        # quit command
         if command == "quit":
             print("Goodbye!")
             sys.exit()
 
+        # inventory command
         elif command == "inventory":
             if len(inventory) == 0:
                 print("You're not carrying anything.\n")
@@ -78,8 +85,9 @@ while True:
                     print(" ", item)
                 print()
 
+        # go ... command
         elif command.startswith("go "):
-            direction = command[3:]
+            direction = command[3:].strip()
             if direction in current_location["direction"]:
                 next_location = game_map[current_location["direction"][direction]]
                 print("You go", direction + ".\n")
@@ -87,11 +95,13 @@ while True:
             else:
                 print("There's no way to go", direction + ".\n")
 
+        # look command
         elif command == "look":
             pass
 
+        # get ... command
         elif command.startswith("get "):
-            item_name = command[4:]
+            item_name = command[4:].strip()
             if item_name in game_map[12] and "purse" not in inventory:
                 print("Uh oh! You can't pick this item without paying for it.\n")
                 continue
@@ -106,6 +116,7 @@ while True:
             else:
                 print("There's no", item_name, "here.\n")
 
+        # drop command
         elif command.startswith("drop "):
             item_name = command[5:]
             if item_name in inventory:
@@ -115,42 +126,43 @@ while True:
             else:
                 print("There's no", item_name, "in your inventory.\n")
 
+        # assist command
         elif command == "assist":
             if current_location != game_map[3]:
-                print("Nobody needs your help here.\n")
+                print("Looks like nobody needs any assistance right now.\n")
                 continue
             print(current_location["help_message"])
             inventory.append(current_location["gift"])
             current_location["flag"] = "false"
 
+        # help command
         elif command == "help":
             print("You can run the following commands:")
             for i in command_list:
                 print("\t" + i)
+            # command = input("What would you like to do? ").strip().lower()
+            # if command == "quit":
+            #     print("Goodbye!")
+            #     sys.exit()
+            # if command == "assist":
+            #     if current_location != game_map[3]:
+            #         print("Nobody needs your help here.\n")
+            #         continue
+            #     print(current_location["help_message"])
+            #     inventory.append(current_location["gift"])
+            #     current_location["flag"] = "false"
 
-            command = input("What would you like to do? ").strip().lower()
-            if command == "quit":
-                print("Goodbye!")
-                sys.exit()
-            if command == "assist":
-                if current_location != game_map[3]:
-                    print("Nobody needs your help here.\n")
-                    continue
-                print(current_location["help_message"])
-                inventory.append(current_location["gift"])
-                current_location["flag"] = "false"
-
+        # prepare command
         elif command == "prepare":
             if current_location == game_map[0]:
                 for i in game_map[13]:
-                    if i not in current_location["items"]:
+                    # if i not in current_location["items"]:
+                    if i not in inventory and i not in current_location["items"]:
                         print(i + " is missing from the recipe.")
                         acquired_ingredients = False
                 print()
-            else:
-                print("You need to be in the Kitchen to prepare your ingredients.\n")
 
-            if acquired_ingredients == True:
+            if current_location == game_map[0] and acquired_ingredients == True:
                 print("Perfect! Looks like you have all the recipe items.")
                 print("Mixing recipe items.")
                 time.sleep(0.6)
@@ -161,7 +173,10 @@ while True:
                 print(".")
                 print("Everything is ready. This just needs to go in the oven!\n")
                 prep = True
+            else:
+                print("You need to be in the Kitchen to prepare your ingredients.\n")
 
+        # bake command
         elif command == "bake":
             if prep != True:
                 print("You still haven't prepared all your ingredients for baking.\n")
@@ -185,6 +200,7 @@ while True:
                 print("Thanks for playing!")
                 print("Goodbye!")
                 sys.exit()
+
     except KeyboardInterrupt:
         print("\n\t...")
         print("KeyboardInterrupt")
