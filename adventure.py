@@ -163,36 +163,34 @@ while True:
                     if i not in inventory and i not in current_location["items"]:
                         print(i + " is missing from the recipe.")
                         acquired_ingredients = False
-                print()
-            else:
-                print("You need to be in the Kitchen to bake.")
-                Flag = True
-                continue
+                    Flag = True
+                    continue
 
-            if current_location == game_map[0] and acquired_ingredients == True:
-                print(game_map[-4]["items_compelete"])
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                print(game_map[-4]["oven_prompt"])
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                print(game_map[-4]["final_prompt"])
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                time.sleep(0.6)
-                print(".")
-                print(game_map[-4]["win_message"])
-                sys.exit()
+                if current_location == game_map[0] and acquired_ingredients == True:
+                    print(game_map[-4]["items_compelete"])
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    print(game_map[-4]["oven_prompt"])
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    print(game_map[-4]["final_prompt"])
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    time.sleep(0.6)
+                    print(".")
+                    print(game_map[-4]["win_message"])
+                    sys.exit()
+
             else:
                 print("You need to be in the Kitchen to bake.")
                 Flag = True
